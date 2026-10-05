@@ -4,3 +4,6 @@
 [submodule "ruby-veterinary-api"]
 	path = ruby-veterinary-api
 	url = https://github.com/junihoj/ruby-veterinary-api.git
+[submodule "ruby-veterinary-web-frontend"]
+	path = ruby-veterinary-web-frontend
+	url = https://github.com/junihoj/ruby-veterinary-web-frontend.git
