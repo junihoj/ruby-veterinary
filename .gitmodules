@@ -1,0 +1,6 @@
+[submodule "ruby-veterinary-docs"]
+	path = ruby-veterinary-docs
+	url = https://github.com/junihoj/ruby-veterinary-docs.git
+[submodule "ruby-veterinary-api"]
+	path = ruby-veterinary-api
+	url = https://github.com/junihoj/ruby-veterinary-api.git
