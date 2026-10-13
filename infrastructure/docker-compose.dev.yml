@@ -18,5 +18,26 @@ services:
       retries: 12
       start_period: 10s
 
+  seaweedfs:
+    # Pinned by tag + digest (ADR-0016): upstream images can disappear from
+    # Docker Hub — MinIO CE did in Sep 2026. Do not use `latest` or drop the digest.
+    image: chrislusf/seaweedfs:3.99@sha256:8d5b323911a996d5ea152115306bed468d9a849d72bcbb3800ea8d91b7728563
+    container_name: ruby-veterinary-seaweedfs
+    command: server -s3 -dir=/data
+    ports:
+      - "8333:8333"   # S3 API
+      - "9333:9333"   # master UI / cluster status
+    volumes:
+      - seaweedfsdata:/data
+    healthcheck:
+      # S3 gateway root returns the S3 ListBuckets XML once master, volume,
+      # filer and S3 are all up; fails until then.
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8333/"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
 volumes:
   pgdata:
+  seaweedfsdata:
