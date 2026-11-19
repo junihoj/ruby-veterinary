@@ -1,6 +1,8 @@
 services:
   postgres:
-    image: postgres:16-alpine
+    # pgvector-enabled PG 16 (ADR-0017). Same major/data-dir format as
+    # postgres:16-alpine, so existing `pgdata` volumes survive the swap.
+    image: pgvector/pgvector:pg16
     container_name: ruby-veterinary-postgres
     environment:
       POSTGRES_USER: ruby
